@@ -6,7 +6,7 @@ import { Header } from './Header';
 import { AIPanel } from './AIPanel';
 import { useAuth } from '../../context/AuthContext';
 import { useApp } from '../../context/AppContext';
-import { Video, X as CloseIcon } from 'lucide-react';
+import { X as CloseIcon } from 'lucide-react';
 import { Rnd } from 'react-rnd';
 
 const defaultAgentNavItems = [
@@ -86,7 +86,11 @@ const ZoomWidget: React.FC = () => {
         onClick={toggle}
         className="fixed bottom-5 right-5 w-12 h-12 rounded-full shadow-md bg-white flex items-center justify-center cursor-pointer z-50"
       >
-        <Video size={24} />
+        <img
+          src="/Vector.png"
+          alt="Open Zoom"
+          className="w-6 h-6"
+        />
       </div>
     );
   }

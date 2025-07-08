@@ -118,7 +118,7 @@ const ZoomWidget: React.FC = () => {
         </button>
       </div>
       <iframe
-        src="https://zoom.us/cci/callbar/crm/?origin=https://app.konnectinsights.com"
+        src="https://zoom.us/cci/callbar/crm/?origin=https://crmexequteai.vercel.app/"
         sandbox="allow-forms allow-popups allow-popups-to-escape-sandbox allow-scripts allow-same-origin allow-downloads"
         allow="autoplay;microphone;camera;display-capture;midi;encrypted-media;clipboard-write;"
         style={{ flex: 1, border: 0 }}

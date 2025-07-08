@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { LogIn, Eye, EyeOff } from 'lucide-react';
+import { Eye, EyeOff } from 'lucide-react';
 import { Input } from '../ui/Input';
 import { Button } from '../ui/Button';
 import { Card, CardHeader, CardTitle, CardContent } from '../ui/Card';
@@ -20,7 +20,6 @@ export const LoginForm: React.FC = () => {
 
     const success = await login(email, password);
     if (success) {
-      // navigate based on the dummy email
       const role = email.startsWith('admin') ? 'admin' : 'agent';
       navigate(`/${role}/dashboard`);
     } else {
@@ -36,9 +35,14 @@ export const LoginForm: React.FC = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-purple-50 flex items-center justify-center p-4">
       <div className="w-full max-w-md space-y-6">
+        {/* Header with your Vector.png logo */}
         <div className="text-center">
-          <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl mb-4">
-            <LogIn className="h-8 w-8 text-white" />
+          <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl mb-4 overflow-hidden bg-white">
+            <img
+              src="/Vector.png"
+              alt="CRM AI Logo"
+              className="object-cover w-full h-full"
+            />
           </div>
           <h1 className="text-3xl font-bold text-gray-900">CRM AI</h1>
           <p className="text-gray-600 mt-2">Sign in to your account</p>
@@ -105,9 +109,9 @@ export const LoginForm: React.FC = () => {
           </CardHeader>
           <CardContent>
             <div className="space-y-2">
-              {demoAccounts.map((account, index) => (
+              {demoAccounts.map((account, idx) => (
                 <button
-                  key={index}
+                  key={idx}
                   onClick={() => {
                     setEmail(account.email);
                     setPassword(account.password);

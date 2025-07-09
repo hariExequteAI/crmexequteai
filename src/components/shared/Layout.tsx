@@ -9,6 +9,7 @@ import { useApp } from '../../context/AppContext';
 import { X as CloseIcon } from 'lucide-react';
 import { Rnd } from 'react-rnd';
 
+// Default nav items for Agent, including Leads
 const defaultAgentNavItems = [
   { id: '1',  label: 'Notifications',    icon: 'Bell',           path: '/agent/notifications',  order: 1,  isVisible: true },
   { id: '2',  label: 'Dashboard',        icon: 'LayoutDashboard',path: '/agent/dashboard',      order: 2,  isVisible: true },
@@ -20,8 +21,10 @@ const defaultAgentNavItems = [
   { id: '8',  label: 'Knowledge Base',   icon: 'BookOpen',       path: '/agent/knowledge',      order: 8,  isVisible: true },
   { id: '9',  label: 'Settings',         icon: 'Settings',       path: '/agent/settings',       order: 9,  isVisible: true },
   { id: '10', label: 'Help',             icon: 'HelpCircle',     path: '/agent/help',           order: 10, isVisible: true },
+  { id: '11', label: 'Leads',            icon: 'UserPlus',       path: '/agent/leads',          order: 11, isVisible: true },
 ];
 
+// Default nav items for Admin, including Leads
 const defaultAdminNavItems = [
   { id: '1',  label: 'Notifications',    icon: 'Bell',           path: '/admin/notifications',  order: 1,  isVisible: true },
   { id: '2',  label: 'Dashboard',        icon: 'LayoutDashboard',path: '/admin/dashboard',      order: 2,  isVisible: true },
@@ -36,6 +39,7 @@ const defaultAdminNavItems = [
   { id: '11', label: 'Permissions',      icon: 'Shield',         path: '/admin/permissions',    order: 11, isVisible: true },
   { id: '12', label: 'Custom Fields',    icon: 'FormInput',      path: '/admin/custom-fields',  order: 12, isVisible: true },
   { id: '13', label: 'Audit Logs',       icon: 'FileText',       path: '/admin/audit',          order: 13, isVisible: true },
+  { id: '14', label: 'Leads',            icon: 'UserPlus',       path: '/admin/leads',          order: 14, isVisible: true },
 ];
 
 export const Layout: React.FC = () => {
@@ -44,11 +48,8 @@ export const Layout: React.FC = () => {
 
   useEffect(() => {
     if (!user) return;
-    const navItems = user.role === 'admin'
-      ? defaultAdminNavItems
-      : defaultAgentNavItems;
-
-    updateNavItems(navItems);
+    const items = user.role === 'admin' ? defaultAdminNavItems : defaultAgentNavItems;
+    updateNavItems(items);
   }, [user, updateNavItems]);
 
   return (
@@ -70,13 +71,11 @@ export const Layout: React.FC = () => {
   );
 };
 
+// Zoom floating widget
 const ZoomWidget: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [size, setSize] = useState({ width: 360, height: 460 });
-  const [position, setPosition] = useState({
-    x: window.innerWidth - 380,
-    y: window.innerHeight - 480,
-  });
+  const [position, setPosition] = useState({ x: window.innerWidth - 380, y: window.innerHeight - 480 });
 
   const toggle = () => setIsOpen(o => !o);
 
@@ -86,11 +85,7 @@ const ZoomWidget: React.FC = () => {
         onClick={toggle}
         className="fixed bottom-5 right-5 w-12 h-12 rounded-full shadow-md bg-white flex items-center justify-center cursor-pointer z-50"
       >
-        <img
-          src="/Vector.png"
-          alt="Open Zoom"
-          className="w-6 h-6"
-        />
+        <img src="/Vector.png" alt="Open Zoom" className="w-6 h-6" />
       </div>
     );
   }
@@ -107,14 +102,7 @@ const ZoomWidget: React.FC = () => {
       minWidth={300}
       minHeight={200}
       bounds="window"
-      style={{
-        border: '1px solid #e5e7eb',
-        boxShadow: '0 4px 6px rgba(0,0,0,0.1)',
-        background: 'white',
-        zIndex: 9999,
-        display: 'flex',
-        flexDirection: 'column',
-      }}
+      style={{ border: '1px solid #e5e7eb', boxShadow: '0 4px 6px rgba(0,0,0,0.1)', background: 'white', zIndex: 9999, display: 'flex', flexDirection: 'column' }}
     >
       <div className="flex items-center justify-end p-1 bg-gray-100">
         <button onClick={toggle} className="p-1 text-gray-600 hover:text-gray-800">

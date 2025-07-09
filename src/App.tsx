@@ -24,11 +24,12 @@ import { KnowledgeBasePage } from './components/agent/KnowledgeBasePage';
 import { SettingsPage } from './components/agent/SettingsPage';
 import { HelpPage } from './components/agent/HelpPage';
 import { NotificationPage } from './components/agent/NotificationPage';
+// 👇 New Lead Management page for agents
+import { LeadsPage } from './components/agent/LeadsPage';
 
 // ==============================
 // 🛠️ Admin Components
 // ==============================
-import { NotificationManagement } from './components/admin/NotificationManagement';
 import { AdminDashboard } from './components/admin/AdminDashboard';
 import { UserManagement } from './components/admin/UserManagement';
 import { DepartmentManagement } from './components/admin/DepartmentManagement';
@@ -41,6 +42,9 @@ import { ContactManagement } from './components/admin/ContactManagement';
 import { PermissionManagement } from './components/admin/PermissionManagement';
 import { CustomFieldBuilder } from './components/admin/CustomfieldBuilder';
 import { AuditLogManagement } from './components/admin/AuditLogManagement';
+import { NotificationManagement } from './components/admin/NotificationManagement';
+// 👇 New Lead Management page for admins
+import { LeadManagement } from './components/admin/LeadManagement';
 
 // ==============================
 // 🔐 Protected Route Wrapper
@@ -124,6 +128,8 @@ const AppRoutes: React.FC = () => {
                 <Route path="settings" element={<SettingsPage />} />
                 <Route path="help" element={<HelpPage />} />
                 <Route path="notifications" element={<NotificationPage />} />
+                {/* 👇 New route for leads */}
+                <Route path="leads" element={<LeadsPage />} />
               </Routes>
             </RoleBasedRoute>
           }
@@ -148,6 +154,8 @@ const AppRoutes: React.FC = () => {
                 <Route path="custom-fields" element={<CustomFieldBuilder />} />
                 <Route path="audit" element={<AuditLogManagement />} />
                 <Route path="notifications" element={<NotificationManagement />} />
+                {/* 👇 New route for lead management */}
+                <Route path="leads" element={<LeadManagement />} />
               </Routes>
             </RoleBasedRoute>
           }
